@@ -5,13 +5,13 @@ var RiskGame = {
   'title': 'RISK: World at War!',
   'continentCount': 6,
   'countryCount': 42,
-  'continentsWithCountries': {//still needs to be completed
-  	'North America': ['Western United States'],
-  	'South America': ['Brazil'],
-  	'Europe': ['Iceland'],
-  	'Africa': ['North Africa'],
-  	'Asia': ['Kamchatka'],
-  	'Australia': ['Western Australia', 'Indonesia'],
+  'continentsWithCountries': {
+  	'North America': ['alaska','northwest territory','greenland','alberta','ontario','eastern canada','western united states','eastern united states','central america'],
+  	'South America': ['venezuela','brazil','peru','argentina'],
+  	'Europe': ['Iceland','Great Britain','Western Europe','Northern Europe','Southern Europe','Scandinavia','Russia'],
+  	'Africa': ['North Africa','Egypt','East Africa','Central Africa','South Africa','Madagascar'],
+  	'Asia': ['Middle East','Afghanistan','India','China','Ural','Siberia','Yakutsk','Kamchatka','Irkutsk','Mongolia','Japan','Southeast Asia'],
+  	'Australia': ['Eastern Australia','Western Australia','Indonesia','New Guinea'],
   },
   'armyUnits': {
   	'Infantry': 1,
