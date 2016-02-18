@@ -2,11 +2,93 @@ var RiskGame = {
 
   // var title = 'RISK: The World is at War';
   // var continentCount = 6;
- 'title': 'RISK: The World is at War!',
+  'title': 'RISK: World at War!',
+  'continentCount': 6,
+  'countryCount': 42,
+  'continentsWithCountries': {//still needs to be completed
+  	'North America': ['Western United States'],
+  	'South America': ['Brazil'],
+  	'Europe': ['Iceland'],
+  	'Africa': ['North Africa'],
+  	'Asia': ['Kamchatka'],
+  	'Australia': ['Western Australia', 'Indonesia'],
+  },
+  'armyUnits': {
+  	'Infantry': 1,
+  	'Cavalry': 5,
+  	'Artillery': 10,
+  },
+  'armyColors': ['red', 'green', 'blue', 'yellow', 'white', 'black'],
+  'minPlayers': 2,
+  'maxPlayers': 6,
+  'numPlayers': 0,
+  'players': [],
+  'cardCount': 56,
+  'missionCards': 12,
+  'wildCards': 2,
+  'playOrder': [],
+  'deck': [],
+  'dice': {
+  	'red': 3,
+  	'white': 2
+  },
 
   getTitle: function(){
     return this.title;
   },
+
+  configureGame: function(numPlayers, players) {
+  	if((numPlayers < this.minPlayers) || (numPlayers > this.maxPlayers)) {
+  		alert('Unacceptable number of players');
+  		return false;
+  	}
+    else {
+      this.numPlayers = numPlayers;
+      for(var n=0; n<players.length;n++) {
+        this.players.push({'id': n, 'name': players[n]['name'] || 'test_player'})
+      }
+      this.startGame();
+    }
+  },
+
+  startGame: function() {
+    //roll to see who starts
+    for(var i=0;i<this.players.length;i++) {
+      this.playOrder.push({id: this.players[i].id, roll: this.rollDice(1)});
+    }
+    this.playOrder.sort(function(a,b){
+      return a.roll>b.roll;
+    });
+    // this.dealCards(); //split 54 cards evenly among players to see who gets which territories
+    // this.placeUnits(); // take turns placing units on the board...colors from player id?
+  },
+
+  rollDice: function(numDice, advantage) {
+    var roll=[];
+    for(var i=0;i<numDice;i++) {
+      roll.push( this.randomizeDiceRoll(advantage) );
+    }
+    return roll;
+  },
+
+  randomizeDiceRoll: function(advantage) {
+    //advantage... defender should have slight advantage
+    var diceSides = [1,2,3,4,5,6];
+    if(advantage) {
+      var roll = Math.ceil((Math.random() * diceSides[diceSides.length-1]) + 1);
+      return roll > diceSides[diceSides.length-1] ? diceSides[diceSides.length-1] : roll;
+    }
+    else {
+      return Math.floor((Math.random() * diceSides[diceSides.length-1]) + 1);
+    }
+  },
+
+  playTurn: function() {
+    for(var n=0;n<this.playOrder.length;n++) {
+      //player[playOrder].each do something...
+    }
+  }
+
   //return this;
 };
 
